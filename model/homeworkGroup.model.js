@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const studentSchema = mongoose.Schema({
-    number: {
+const homeworkGroupSchema = mongoose.Schema({
+    id: {
         type: Number,
-        require: true
+        required: true
     },
-    name: {
+    title: {
         type: String,
-        require: true
+        required: true
     },
     created_at: {
         type: Date,
@@ -17,4 +17,8 @@ const studentSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
-})
+});
+
+const homeworkGroupModel = mongoose.model("HomeworkGroup", homeworkGroupSchema);
+
+module.exports = homeworkGroupModel;
