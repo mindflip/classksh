@@ -17,4 +17,8 @@ const studentSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
-})
+});
+
+const studentModel = mongoose.model("Student", studentSchema);
+
+module.exports = studentModel;
