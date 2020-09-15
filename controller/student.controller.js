@@ -22,18 +22,18 @@ exports.getStudentById = async (req, res, next) => {
     try {
         const student = await studentModel.findById(req.params.student_id);
         if(student) {
-            res.send(200).json(student);
+            res.status(200).json(student);
         } else {
             res.status(404).send();
         }
     } catch(err) {
         next(err);
     }
-}
+};
 
 exports.updateStudent = async (req, res, next) => {
     try {
-        const updatedStudent = await studentModel.findByIdAndUpdate(req.params.student_id. req.body, {
+        const updatedStudent = await studentModel.findByIdAndUpdate(req.params.student_id, req.body, {
             new: true,
             useFindAndModify: false
         });
@@ -45,7 +45,7 @@ exports.updateStudent = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-}
+};
 
 exports.deleteStudent = async (req, res, next) => {
     try {
@@ -58,4 +58,4 @@ exports.deleteStudent = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-}
+};
