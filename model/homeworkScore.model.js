@@ -1,18 +1,13 @@
 const mongoose = require("mongoose");
 
-const homeworkSchema = mongoose.Schema({
-    id: {
+const homeworkScoreSchema = mongoose.Schema({
+    homework_id: {
         type: Number,
         required: true
     },
-    group_id: {
-        //type: mongoose.Schema.ObjectId, ref: 'HomeworkGroup'
+    student_id: {
         type: Number,
         required: true
-    },
-    title: {
-        type: String,
-        require: true
     },
     created_at: {
         type: Date,
@@ -24,6 +19,6 @@ const homeworkSchema = mongoose.Schema({
     }
 });
 
-const homeworkModel = mongoose.model("Homework", homeworkSchema);
+const homeworkScoreModel = mongoose.model("HomeworkScore", homeworkScoreSchema);
 
-module.exports = homeworkModel;
+module.exports = homeworkScoreModel;

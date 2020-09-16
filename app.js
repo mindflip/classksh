@@ -7,8 +7,11 @@ const mongodb = require("./mongodb/mongodb.connect");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-let adminRouter = require('./routes/admin');
-let studentsRouter = require('./routes/students');
+let adminRouter = require('./routes/api/admin');
+let studentsRouter = require('./routes/api/students');
+let homeworkGroupsRouter = require('./routes/api/homeworkGroups');
+let homeworksRouter = require('./routes/api/homeworks');
+let homeworkScoreRouter = require('./routes/api/homeworkScore');
 
 require('dotenv').config();
 
@@ -26,9 +29,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
-app.use('/students', studentsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/students', studentsRouter);
+app.use('/api/homework_groups', homeworkGroupsRouter);
+app.use('/api/homeworks', homeworksRouter);
+app.use('/api/homeworkScore', homeworkScoreRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
