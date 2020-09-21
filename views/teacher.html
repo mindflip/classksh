@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>수현쌤 교실</title>
+
+        <!-- App css -->
+        <link href="../public/stylesheets/icons.css" rel="stylesheet" type="text/css" />
+        <link href="../public/stylesheets/app-modern.css" rel="stylesheet" type="text/css" id="light-style" />
+
+    </head>
+    <body class="" data-layout="detached" data-layout-config='{"leftSidebarCondensed":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+        <!-- Topbar Start -->
+        <div class="navbar-custom topnav-navbar topnav-navbar-dark">
+            <div class="container-fluid">
+
+                <!-- LOGO -->
+                <a href="index.html" class="nav-link" style="text-decoration: none; color: #98a6ad;">
+                    <h2>KSH</h2>
+                </a>
+
+            </div>
+        </div>
+        <!-- end Topbar -->
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- Begin page -->
+            <div class="wrapper">
+
+                <!-- ========== Left Sidebar Start ========== -->
+                <div class="left-side-menu left-side-menu-detached">
+
+                    <div class="leftbar-user">
+                        <img src="../public/images/profile.png" alt="user-image" height="42" class="rounded-circle shadow-sm">
+                        <span class="leftbar-user-name">권수현 선생님</span>
+                    </div>
+
+                    <!--- Sidemenu -->
+                    <ul class="metismenu side-nav">
+
+                        <li class="side-nav-title side-nav-item">Navigation</li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span> Dashboards </span>
+                            </a>
+                            <a href="/student" class="side-nav-link">
+                                <i class="uil-user"></i>
+                                <span> Students </span>
+                            </a>
+                            <a href="/homework" class="side-nav-link">
+                                <i class="uil-book-open"></i>
+                                <span> Homeworks </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">Admin</li>
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-user"></i>
+                                <span> Teacher </span>
+                            </a>
+                        </li>
+
+        
+                    </ul>
+
+                    <!-- End Sidebar -->
+
+                </div>
+                <!-- Left Sidebar End -->
+
+                <div class="content-page">
+                    <div class="content">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">관리페이지</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->    
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <!-- Checkout Steps -->
+                                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                            <li class="nav-item">
+                                                <a href="#students" data-toggle="tab" aria-expanded="false"
+                                                    class="nav-link rounded-0 active">
+                                                    <i class="mdi mdi-account-circle font-18"></i>
+                                                    <span class="d-none d-lg-block">학생</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#homework_group" data-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                                    <i class="mdi mdi-file-multiple-outline font-18"></i>
+                                                    <span class="d-none d-lg-block">과제 그룹</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#homework" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                    <i class="mdi mdi-file-edit-outline font-18"></i>
+                                                    <span class="d-none d-lg-block">과제</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Steps Information -->
+                                        <div class="tab-content">
+
+                                            <!-- Students Content-->
+                                            <div class="tab-pane show active" id="students">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">학생 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" data-toggle="modal" data-target="#std-detail-modal" class="text-body">
+                                                                                        1. 이준석
+                                                                                    </a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">2. 권수현</a>
+                                                                                </p>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">3. 박능엄</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">4. 김민정</a>
+                                                                                </p>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">5. 김똘똘</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">6. 최요정</a>
+                                                                                </p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mt-2">학생 관리</h4>
+
+                                                        <p class="text-muted mb-4">학생을 등록 / 수정 / 삭제합니다.</p>
+
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="billing-first-name">번호</label>
+                                                                        <input class="form-control" type="text" placeholder="학생 번호 입력" id="billing-first-name" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="billing-email-address">이름</label>
+                                                                        <input class="form-control" type="email" placeholder="학생 이름 입력" id="billing-email-address" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row mt-4">
+                                                                <div class="col-sm-6">
+                                                                    <div class="text-sm-center">
+                                                                        <a href="apps-ecommerce-checkout.html" class="btn btn-danger">
+                                                                            <i class="mdi mdi-account-circle mr-1"></i> 학생 등록 </a>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                                <div class="col-sm-6">
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </form>
+                                                    </div>
+                                                           
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Students Content-->
+
+                                            <!-- Homework Group Content-->
+                                            <div class="tab-pane" id="homework_group">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">과제 그룹 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">1주차 과제</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">2주차 과제</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">3주차 과제</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mt-2">과제 그룹 관리</h4>
+
+                                                        <p class="text-muted mb-4">과제 그룹을 등록 / 삭제합니다.</p>
+
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="billing-email-address">과제 그룹 타이틀</label>
+                                                                        <input class="form-control" type="email" placeholder="과제 그룹 타이틀 입력" id="billing-email-address" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row mt-4">
+                                                                <div class="col-sm-6">
+                                                                    <div class="text-sm-center">
+                                                                        <a href="apps-ecommerce-checkout.html" class="btn btn-danger">
+                                                                            <i class="mdi mdi-file-multiple-outline mr-1"></i> 과제 그룹 등록 </a>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                                <div class="col-sm-6">
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </form>
+                                                    </div>
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Homework Group Content-->
+
+                                            <!-- Homework Content-->
+                                            <div class="tab-pane" id="homework">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">과제 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">1주차 과제 - 8/20 일기</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">1주차 과제 - 8/21 영어</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">2주차 과제 - 미술글자</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <p class="m-0 d-inline-block align-middle">
+                                                                                    <a href="#" class="text-body">2주차 과제 - 8/27 국어</a>
+                                                                                </p>
+                                                                            </td>
+                                                                            <td class="text-sm-right">
+                                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mt-2">과제 관리</h4>
+
+                                                        <p class="text-muted mb-4">과제를 등록 / 삭제합니다.</p>
+
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <div class="form-group">
+                                                                        <label>과제 그룹 설정</label>
+                                                                        <select class="form-control form-control-light" title="Country">
+                                                                            <option value="0">그룹 선택</option>
+                                                                            <option value="AF">1주차 과제</option>
+                                                                            <option value="AL">2주차 과제</option>
+                                                                            <option value="DZ">3주차 과제</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="billing-email-address">과제 타이틀</label>
+                                                                        <input class="form-control" type="email" placeholder="과제 타이틀 입력" id="billing-email-address" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row mt-4">
+                                                                <div class="col-sm-6">
+                                                                    <div class="text-sm-center">
+                                                                        <a href="apps-ecommerce-checkout.html" class="btn btn-danger">
+                                                                            <i class="mdi mdi-file-edit-outline mr-1"></i> 과제 등록 </a>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                                <div class="col-sm-6">
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </form>
+                                                    </div>
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Homework Content-->
+
+                                        </div> <!-- end tab content-->
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+
+        <!--  Add new task modal -->
+        <div class="modal fade task-modal-content" id="std-detail-modal" tabindex="-1" role="dialog" aria-labelledby="NewTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="NewTaskModalLabel">학생 수정 / 삭제</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="p-2">
+
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="task-title">번호</label>
+                                        <input type="text" class="form-control form-control-light" id="task-title" placeholder="Enter title">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="task-priority2">이름</label>
+                                        <input type="text" class="form-control form-control-light" id="task-title" placeholder="Enter title">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                            
+                            <div class="text-right">
+                                <button type="button" class="btn btn-primary">수정</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+        <!-- bundle -->
+        <script src="../public/javascripts/vendor.min.js"></script>
+
+    </body>
+</html>
