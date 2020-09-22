@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const homeworkScoreController = require("../controller/homeworkScore.controller");
+const homeworkScoreController = require("../../controller/homeworkScore.controller");
 
 router.post("/", homeworkScoreController.createHomeworkScore);
 router.get("/", homeworkScoreController.getHomeworkScores);
