@@ -2,11 +2,15 @@ const mongoose = require("mongoose");
 
 const homeworkScoreSchema = mongoose.Schema({
     homework_id: {
-        type: Number,
+        type: String,
         required: true
     },
     student_id: {
-        type: Number,
+        type: String,
+        required: true
+    },
+    score: {
+        type: String,
         required: true
     },
     created_at: {

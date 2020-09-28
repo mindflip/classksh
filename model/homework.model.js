@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const homeworkSchema = mongoose.Schema({
     id: {
         type: Number,
-        required: true
+        required: false
     },
     group_id: {
         //type: mongoose.Schema.ObjectId, ref: 'HomeworkGroup'
-        type: Number,
+        type: String,
         required: true
     },
     title: {

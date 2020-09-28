@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const homeworkGroupSchema = mongoose.Schema({
     id: {
         type: Number,
-        required: true
+        required: false
     },
     title: {
         type: String,

@@ -1,4 +1,6 @@
 const homeworkGroupModel = require("../model/homeworkGroup.model");
+const homeworkModel = require("../model/homework.model");
+const homeworkScoreModel = require("../model/homeworkScore.model");
 
 exports.createHomeworkGroup = async (req, res, next) => {
     try {
@@ -35,6 +37,8 @@ exports.getHomeworkGroupById = async (req, res, next) => {
 exports.deleteHomeworkGroup = async (req, res, next) => {
     try {
         const deletedHomeworkGroup = await homeworkGroupModel.findByIdAndDelete(req.params.homework_group_id);
+        const deletedHomework = await homeworkModel.deleteMany({ group_id: req.params.homework_group_id });
+        const deletedHomeworkScore = await homeworkScoreModel.deleteMany({ homework_id: deletedHomework._id });
 
         if(deletedHomeworkGroup) {
             res.status(200).json(deletedHomeworkGroup);
