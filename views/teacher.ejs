@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('module/head'); %>
+    </head>
+    <body class="" data-layout="detached" data-layout-config='{"leftSidebarCondensed":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+        <%- include('module/topbar'); %>
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- Begin page -->
+            <div class="wrapper">
+
+                <%- include('module/leftsidebar'); %>
+                <div class="content-page">
+                    <div class="content">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">관리페이지</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->    
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <!-- Checkout Steps -->
+                                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                            <li class="nav-item">
+                                                <a href="#students" data-toggle="tab" aria-expanded="false"
+                                                    class="nav-link rounded-0 active">
+                                                    <i class="mdi mdi-account-circle font-18"></i>
+                                                    <span class="d-none d-lg-block">학생</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#homework_group" data-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                                    <i class="mdi mdi-file-multiple-outline font-18"></i>
+                                                    <span class="d-none d-lg-block">과제 그룹</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#homework" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                    <i class="mdi mdi-file-edit-outline font-18"></i>
+                                                    <span class="d-none d-lg-block">과제</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#score" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                    <i class="mdi mdi mdi-clipboard-check-multiple-outline font-18"></i>
+                                                    <span class="d-none d-lg-block">과제 점수</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Steps Information -->
+                                        <div class="tab-content">
+
+                                            <!-- Students Content-->
+                                            <div class="tab-pane show active" id="students">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">학생 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody id="std-tbody">
+                                                                        <% students.forEach(element => { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <p class="m-0 d-inline-block align-middle">
+                                                                                        <%= element.number %>.
+                                                                                        <button type="button" data-toggle="modal" data-target="#std-detail-modal" class="btn btn-link text-body" id="std-mod" data-number=<%= element.number %> data-id=<%= element._id %>>
+                                                                                            <%= element.name %>
+                                                                                        </button>
+                                                                                    </p>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <% }); %>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mt-2">학생 관리</h4>
+
+                                                        <p class="text-muted mb-4">학생을 등록 / 수정 / 삭제합니다.</p>
+
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="post-std-number">번호</label>
+                                                                        <input class="form-control" type="number" placeholder="학생 번호 입력" id="post-std-number" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="post-std-name">이름</label>
+                                                                        <input class="form-control" type="text" placeholder="학생 이름 입력" id="post-std-name" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row mt-4">
+                                                                <div class="col-sm-6">
+                                                                    <div class="text-sm-center">
+                                                                        <a id="btn-std-post" href="#" class="btn btn-danger">
+                                                                            <i class="mdi mdi-account-circle mr-1"></i> 학생 등록
+                                                                        </a>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                                <div class="col-sm-6">
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </form>
+                                                    </div>
+                                                           
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Students Content-->
+
+                                            <!-- Homework Group Content-->
+                                            <div class="tab-pane" id="homework_group">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">과제 그룹 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody id="hwgrp-tbody">
+                                                                        <% homeworkGroup.forEach(element => { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <p class="m-0 d-inline-block align-middle">
+                                                                                        <a class="text-body">
+                                                                                            <%= element.title %>
+                                                                                        </a>
+                                                                                    </p>
+                                                                                </td>
+                                                                                <td class="text-sm-right">
+                                                                                    <a id="btn-hwgrp-delete" href="#" class="btn" data-id=<%= element._id %>><i class="mdi mdi-trash-can-outline"></i></a>
+                                                                                </td>
+                                                                            </tr>                                                                            
+                                                                        <% }); %>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mt-2">과제 그룹 관리</h4>
+
+                                                        <p class="text-muted mb-4">과제 그룹을 등록 / 삭제합니다.</p>
+
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="post-hwgrp-title">과제 그룹 타이틀</label>
+                                                                        <input class="form-control" type="email" placeholder="과제 그룹 타이틀 입력" id="post-hwgrp-title" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row mt-4">
+                                                                <div class="col-sm-6">
+                                                                    <div class="text-sm-center">
+                                                                        <a id="btn-hwgrp-post" href="#" class="btn btn-danger">
+                                                                            <i class="mdi mdi-file-multiple-outline mr-1"></i> 과제 그룹 등록 </a>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                                <div class="col-sm-6">
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </form>
+                                                    </div>
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Homework Group Content-->
+
+                                            <!-- Homework Content-->
+                                            <div class="tab-pane" id="homework">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">과제 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody id="hw-tbody">
+                                                                        <% homework.forEach(element => { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <p class="m-0 d-inline-block align-middle">
+                                                                                        <a class="text-body">
+                                                                                            <%= element.title %> - 
+                                                                                            <% homeworkGroup.forEach(hwg => { %>
+                                                                                                <% if(element.group_id == hwg._id) { %>
+                                                                                                    <%= hwg.title %>
+                                                                                                <% } %>
+                                                                                            <% }) %>
+                                                                                        </a>
+                                                                                        
+                                                                                    </p>
+                                                                                </td>
+                                                                                <td class="text-sm-right">
+                                                                                    <a id="btn-hw-delete" href="#" class="btn" data-id=<%= element._id %>><i class="mdi mdi-trash-can-outline"></i></a>
+                                                                                </td>
+                                                                            </tr>                                                                            
+                                                                        <% }); %>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mt-2">과제 관리</h4>
+
+                                                        <p class="text-muted mb-4">과제를 등록 / 삭제합니다.</p>
+
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <div class="form-group">
+                                                                        <label>과제 그룹 설정</label>
+                                                                        <select id="sel-hwgrpid" class="form-control form-control-light" title="Country">
+                                                                            <option value="0">그룹 선택</option>
+                                                                            <% homeworkGroup.forEach(element => { %>
+                                                                                <option value=<%= element._id %>>
+                                                                                    <%= element.title %>
+                                                                                </option>                                                                           
+                                                                            <% }); %>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="post-hw-title">과제 타이틀</label>
+                                                                        <input class="form-control" type="text" placeholder="과제 타이틀 입력" id="post-hw-title" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                </div>
+                                                            </div> <!-- end row -->
+
+                                                            <div class="row mt-4">
+                                                                <div class="col-sm-6">
+                                                                    <div class="text-sm-center">
+                                                                        <a id="btn-hw-post" href="#" class="btn btn-danger">
+                                                                            <i class="mdi mdi-file-edit-outline mr-1"></i> 과제 등록 </a>
+                                                                    </div>
+                                                                </div> <!-- end col -->
+                                                                <div class="col-sm-6">
+                                                                </div> <!-- end col -->
+                                                            </div> <!-- end row -->
+                                                        </form>
+                                                    </div>
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Homework Content-->
+                                            
+                                            <!-- Score Content-->
+                                            <div class="tab-pane" id="score">
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                                            <h4 class="header-title mb-3">과제 그룹 조회</h4>
+            
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0">
+                                                                    <tbody id="stdscore-tbody">
+                                                                        <!-- comment std list for access score [start] -->
+
+                                                                        <!-- comment std list for access score [end] -->
+                                                                        <% homeworkGroup.forEach(element => { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <p class="m-0 d-inline-block align-middle">
+                                                                                        <a id="std-score-list" href="#" class="text-body" data-id=<%= element._id %>>
+                                                                                            <%= element.title %>
+                                                                                        </a>
+                                                                                    </p>
+                                                                                </td>
+                                                                            </tr>                                                                            
+                                                                        <% }); %>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!-- end table-responsive -->
+                                                        </div> <!-- end .border-->
+            
+                                                    </div> <!-- end col -->     
+
+                                                    <div class="col-lg-9">
+                                                        <h4 class="mt-2">과제 점수 관리</h4>
+
+                                                        <p class="text-muted mb-4">학생들의 과제 점수를 부여 / 수정합니다.</p>
+
+                                                        <form id="std-hw-score-board">
+                                                            
+                                                        </form>
+
+                                                        <div class="row mt-4">
+                                                            <div class="col-sm-6">
+                                                                <div class="text-sm-center">
+                                                                    <a id="btn-hwscore-post" href="#" class="btn btn-danger">
+                                                                        <i class="mdi mdi mdi-clipboard-check-multiple-outline mr-1"></i> 점수 부여/수정 </a>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                            <div class="col-sm-6">
+                                                            </div> <!-- end col -->
+                                                        </div> <!-- end row -->
+                                                        
+                                                    </div>
+                                                </div> <!-- end row-->
+                                            </div>
+                                            <!-- End Score Content-->
+
+                                        </div> <!-- end tab content-->
+
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div>
+
+                    <div id="loc-alert"></div>
+
+                </div>
+            </div>
+        </div>
+        
+        <!--  Add new task modal -->
+        <div class="modal fade task-modal-content" id="std-detail-modal" tabindex="-1" role="dialog" aria-labelledby="NewTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="NewTaskModalLabel">학생 수정 / 삭제</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="p-2">
+
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="task-title">번호</label>
+                                        <input id="mod-std-id" type="text" class="form-control form-control-light" id="task-title" placeholder="Enter title">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="task-priority2">이름</label>
+                                        <input id="mod-std-name" type="text" class="form-control form-control-light" id="task-title" placeholder="Enter title">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-right">
+                                <button id="btn-std-patch" type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+                                <button id="btn-std-delete" type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <%- include('module/bundle'); %>
+
+        <script>
+            let callAlert = function (type) {
+                let divAlert = document.createElement('div');
+
+                if(type == "patch") {
+                    divAlert.className = "alert alert-primary";
+                    divAlert.textContent = "수정되었습니다.";
+                } else if (type == "delete") {
+                    divAlert.className = "alert alert-danger";
+                    divAlert.textContent = "삭제되었습니다.";
+                } else if (type == "post") {
+                    divAlert.className = "alert alert-success";
+                    divAlert.textContent = "등록되었습니다.";
+                } else if (type == "fail_blank") {
+                    divAlert.className = "alert alert-danger";
+                    divAlert.textContent = "데이터 전송 실패하였습니다. 빈 칸을 모두 채워주세요.";
+                }
+                
+                divAlert.role = "alert";
+
+                document.getElementById('loc-alert').appendChild(divAlert);
+
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $(this).remove(); 
+                    });
+                }, 5000);
+            };
+
+            let clickedId;
+            $(document).on("click", "#std-mod", function() {
+                let modBtn = $(this)[0];
+                // console.log(modBtn.dataset.id);
+                // console.log(modBtn.dataset.number);
+                // console.log(modBtn.innerText);
+                clickedId = modBtn.dataset.id
+                $('#mod-std-id').val(modBtn.dataset.number);
+                $('#mod-std-name').val(modBtn.innerText);
+            });
+
+
+            let changeStudentsListScoreTab = (students) => {
+                let tbody = document.getElementById('stdscore-tbody');
+                tbody.innerHTML = '';
+
+                students.forEach(element => {
+                    let row = document.createElement('tr');
+                    let col = document.createElement('td');
+                    let para = document.createElement('p');
+                    para.className = "m-0 d-inline-block align-middle";
+                    para.innerText = element.number + ".";
+                    let name = document.createElement('button');
+                    name.type="button";
+                    name.className = "btn btn-link text-body";
+                    name.setAttribute("data-number", element.number);
+                    name.setAttribute("data-id", element._id);
+                    name.innerText = element.name;
+
+                    para.appendChild(name);
+                    col.appendChild(para);
+                    row.appendChild(col);
+                    // console.log($('#std-tbody'));
+                    tbody.appendChild(row);
+                });
+            }
+
+            let changeStudentsList = (students) => {
+                let tbody = document.getElementById('std-tbody');
+                tbody.innerHTML = '';
+
+                students.forEach(element => {
+                    let row = document.createElement('tr');
+                    let col = document.createElement('td');
+                    let para = document.createElement('p');
+                    para.className = "m-0 d-inline-block align-middle";
+                    para.innerText = element.number + ".";
+                    let name = document.createElement('button');
+                    name.type="button";
+                    name.setAttribute("data-toggle", "modal");         
+                    name.setAttribute("data-target", "#std-detail-modal");
+                    name.className = "btn btn-link text-body";
+                    name.id = "std-mod";
+                    name.setAttribute("data-number", element.number);
+                    name.setAttribute("data-id", element._id);
+                    name.innerText = element.name;
+
+                    para.appendChild(name);
+                    col.appendChild(para);
+                    row.appendChild(col);
+                    // console.log($('#std-tbody'));
+                    tbody.appendChild(row);
+                });
+            }
+
+            let callUpdatedStudents = () => {
+                $.ajax({
+                    method: 'GET',
+                    url: "/api/students"
+                })
+                .done(students => {
+                    console.log(students);
+                    console.log("updatedStudents done 완료");
+                    changeStudentsList(students);
+                    changeStudentsListScoreTab(students);
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            }
+
+            $('#btn-std-patch').on("click", () => {
+                $.ajax({
+                    method: 'PATCH',
+                    url: "/api/students/" + clickedId,
+                    data: { number: $('#mod-std-id').val(), name: $('#mod-std-name').val()}
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("done 완료");
+                    callAlert("patch");
+                    callUpdatedStudents();
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+
+            $('#btn-std-delete').on("click", () => {
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/api/students/" + clickedId
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("delete done");
+                    callAlert("delete");
+                    callUpdatedStudents();                    
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+
+            $('#btn-std-post').on('click', () => {
+                $.ajax({
+                    method: 'POST',
+                    url: "/api/students/",
+                    data: { number: $('#post-std-number').val(), name: $('#post-std-name').val()}
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("post done");
+                    callAlert("post");
+                    callUpdatedStudents();
+                    $('#post-std-number').val('');
+                    $('#post-std-name').val('');
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+
+            // homwork group Tab
+
+            let changeHwgrpList = (hwgrp) => {
+                let tbody = document.getElementById('hwgrp-tbody');
+                tbody.innerHTML = '';
+
+                hwgrp.forEach(element => {
+                    let row = document.createElement('tr');
+                    let col1 = document.createElement('td');
+                    let para = document.createElement('p');
+                    para.className = "m-0 d-inline-block align-middle";
+                    let title = document.createElement('a');
+                    title.className = "text-body";
+                    title.innerText = element.title;
+
+                    let col2 = document.createElement('td');
+                    col2.className = "text-sm-right";
+                    let btnDelete = document.createElement('a');
+                    btnDelete.id = "btn-hwgrp-delete";
+                    btnDelete.setAttribute("data-id", element._id);
+                    btnDelete.href = "#";
+                    btnDelete.className = "btn";
+                    let icon = document.createElement('i');
+                    icon.className = "mdi mdi-trash-can-outline";
+
+                    para.appendChild(title);
+                    col1.appendChild(para);
+                    row.appendChild(col1);
+
+                    btnDelete.appendChild(icon);
+                    col2.appendChild(btnDelete);
+                    row.appendChild(col2);
+                    tbody.appendChild(row);
+                });
+            }
+
+            let changeHwgrpInHwSelector = (hwgrp) => {
+                let selector = document.getElementById('sel-hwgrpid');
+                selector.innerHTML = '';
+                let foption = document.createElement('option');
+                foption.value = "0";
+                foption.innerText = "그룹 선택";
+
+                selector.appendChild(foption);
+
+                hwgrp.forEach(element => {
+                    let option = document.createElement('option');
+                    option.value = element._id;
+                    option.innerText = element.title;
+
+                    selector.appendChild(option);
+                });
+            }
+
+            let changeHwgrpStdScore = (hwgrp) => {
+                let tbody = document.getElementById('stdscore-tbody');
+                tbody.innerHTML = '';
+
+                hwgrp.forEach(element => {
+                    let row = document.createElement('tr');
+                    let col1 = document.createElement('td');
+                    let para = document.createElement('p');
+                    para.className = "m-0 d-inline-block align-middle";
+                    let title = document.createElement('a');
+                    title.id = "std-score-list";
+                    title.href = "#";
+                    title.className = "text-body";
+                    title.dataset.id = element._id;
+                    title.innerText = element.title;
+
+                    para.appendChild(title);
+                    col1.appendChild(para);
+                    row.appendChild(col1);
+
+                    tbody.appendChild(row);
+                });
+            }
+
+            let callUpdatedHwgrp = () => {
+                $.ajax({
+                    method: 'GET',
+                    url: "/api/homework_groups"
+                })
+                .done(hwgrp => {
+                    console.log(hwgrp);
+                    console.log("updated hwgrp done 완료");
+                    changeHwgrpList(hwgrp);
+                    changeHwgrpInHwSelector(hwgrp);
+                    changeHwgrpStdScore(hwgrp);
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            };
+
+            $('#btn-hwgrp-post').on('click', () => {
+                $.ajax({
+                    method: 'POST',
+                    url: "/api/homework_groups/",
+                    data: { title: $('#post-hwgrp-title').val() }
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("post done");
+                    callAlert("post");
+                    callUpdatedHwgrp();
+                    $('#post-hwgrp-title').val('');
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+
+            /*
+            $('#btn-hwgrp-delete').on('click', (event) => {
+                console.log($(this));
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/api/homework_groups/" + $(this).dataset.id,
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("delete done");
+                    callAlert("delete");
+                    callUpdatedHwgrp();
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+            */
+
+            $(document).on("click", "#btn-hwgrp-delete", function() {
+                let delBtn = $(this)[0];
+                console.log(delBtn);
+
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/api/homework_groups/" + delBtn.dataset.id,
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("delete done");
+                    callAlert("delete");
+                    callUpdatedHwgrp();
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+
+
+            // homework Tab
+
+            let changeHwList = (hw, originHwgrp) => {
+                let tbody = document.getElementById('hw-tbody');
+                tbody.innerHTML = '';
+
+                hw.forEach(element => {
+                    let row = document.createElement('tr');
+                    let col1 = document.createElement('td');
+                    let para = document.createElement('p');
+                    para.className = "m-0 d-inline-block align-middle";
+                    let title = document.createElement('a');
+                    title.className = "text-body";
+
+                    if(originHwgrp) {
+                        originHwgrp.forEach(hwg => {
+                            if(element.group_id == hwg._id) {
+                                title.innerText = element.title + " - " + hwg.title;
+                            }
+                        });
+                    }
+
+                    let col2 = document.createElement('td');
+                    col2.className = "text-sm-right";
+                    let btnDelete = document.createElement('a');
+                    btnDelete.id = "btn-hw-delete";
+                    btnDelete.setAttribute("data-id", element._id);
+                    btnDelete.href = "#";
+                    btnDelete.className = "btn";
+                    let icon = document.createElement('i');
+                    icon.className = "mdi mdi-trash-can-outline";
+
+                    para.appendChild(title);
+                    col1.appendChild(para);
+                    row.appendChild(col1);
+
+                    btnDelete.appendChild(icon);
+                    col2.appendChild(btnDelete);
+                    row.appendChild(col2);
+                    tbody.appendChild(row);
+                });
+            }
+            
+            let callUpdatedHw = () => {
+                $.ajax({
+                    method: 'GET',
+                    url: "/api/homeworks"
+                })
+                .done(hw => {
+                    console.log("updated hw done 완료");
+                    $.ajax({
+                        method: 'GET',
+                        url: "/api/homework_groups"
+                    })
+                    .done(hwg => {
+                        changeHwList(hw, hwg);
+                    })
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            };
+
+            $('#btn-hw-post').on('click', () => {
+                $.ajax({
+                    method: 'POST',
+                    url: "/api/homeworks/",
+                    data: { group_id: $('#sel-hwgrpid :selected').val(), title: $('#post-hw-title').val() }
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("post done");
+                    callAlert("post");
+                    callUpdatedHw();
+                    $('#post-hw-title').val('');
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+
+            $(document).on("click", "#btn-hw-delete", function() {
+                let delBtn = $(this)[0];
+                console.log(delBtn);
+
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/api/homeworks/" + delBtn.dataset.id,
+                })
+                .done((json) => {
+                    console.log(json);
+                    console.log("delete done");
+                    callAlert("delete");
+                    callUpdatedHw();
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+            });
+ 
+            // homework score Tab
+            $(document).on("click", "#std-score-list", function() {
+                let homeworkGroupInfo = $(this)[0];
+                console.log(homeworkGroupInfo.innerText);
+                
+                let board = document.getElementById('std-hw-score-board');
+                board.innerHTML = '';
+
+                let homeworkGroupTitle = document.createElement('h3');
+                homeworkGroupTitle.className = "mt-2";
+                homeworkGroupTitle.innerText = homeworkGroupInfo.innerText;
+
+                let row = document.createElement('div');
+                row.className = "row";
+                let col12 = document.createElement('div');
+                col12.className = "col-12";
+                let tableresp = document.createElement('div');
+                tableresp.className = "table-responsive";
+                let table = document.createElement('table');
+                table.className = "table table-centered w-100 dt-responsive nowrap";
+
+                $.ajax({
+                    method: "GET",
+                    url: "/api/homework_score/homework_group/" + homeworkGroupInfo.dataset.id
+                })
+                .done(result => {
+                    console.log(result);
+
+                    // create table content
+                    // homework iteration    // result[0]: homework group // result[1]: homework in the group // result[2]: homework score in the group // result[3]: students
+
+                    let thead = document.createElement('thead');
+                    thead.className ="thead-light";
+
+                    let htr = document.createElement('tr');
+
+                    let thNum = document.createElement('th');
+                    thNum.innerText = "번호";
+                    
+                    let thName = document.createElement('th');
+                    thName.innerText = "이름";
+
+                    htr.appendChild(thNum);
+                    htr.appendChild(thName);
+
+                    result[1].forEach(hw => {
+                        let hwTitle = document.createElement('th');
+                        hwTitle.innerText = hw.title;
+
+                        htr.appendChild(hwTitle);
+                    });
+
+                    let scoreTotalHead = document.createElement('th');
+                    scoreTotalHead.innerText = "합계";
+                    
+                    htr.appendChild(scoreTotalHead);
+
+                    let tbody = document.createElement('tbody');
+
+                    result[3].forEach(student => {
+                        let btr = document.createElement('tr');
+
+                        let tdNum = document.createElement('td');
+                        tdNum.innerText = student.number;
+
+                        let tdName = document.createElement('td');
+                        tdName.innerText = student.name;
+
+                        btr.appendChild(tdNum);
+                        btr.appendChild(tdName);
+                        
+                        let totalScore = 0;
+
+                        result[1].forEach(hw => {
+                            let inputCol = document.createElement('td');
+                            let inputScore = document.createElement('input');
+                            inputScore.name = "input_score_post";
+                            inputScore.className = "form-control";
+                            inputScore.min = "0";
+                            inputScore.max = "2";
+                            inputScore.type = "number";
+                            inputScore.dataset.student_id = student._id;
+                            inputScore.dataset.homework_id = hw._id;
+
+                            // if there is score, put value to input
+                            if(result[2]) {
+                                result[2].forEach(homeworkScore => {
+                                    if(homeworkScore.student_id == student._id
+                                    && homeworkScore.homework_id == hw._id) {
+                                        inputScore.value = homeworkScore.score;
+                                        totalScore += Number(homeworkScore.score);
+                                    }
+                                });
+                            }
+
+                            inputScore.placeholder = "0";
+
+                            inputCol.appendChild(inputScore);
+                            btr.appendChild(inputCol);
+                        });
+                        
+                        let scoreTotalBody = document.createElement('td');
+                        scoreTotalBody.innerText = totalScore;
+
+                        btr.appendChild(scoreTotalBody);
+                        tbody.appendChild(btr);
+                    });
+
+
+                    board.appendChild(homeworkGroupTitle);
+                    board.appendChild(row);
+                    row.appendChild(col12);
+                    col12.appendChild(tableresp);
+                    tableresp.appendChild(table);
+                    table.appendChild(thead);
+                    thead.appendChild(htr);
+                    table.appendChild(tbody);
+
+
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                });
+
+
+                /*
+                
+                let studentName = document.createElement('h3');
+                studentName.className = "mt-2";
+                studentName.innerText = studentInfo.innerText;
+
+                board.appendChild(studentName);
+
+                $.ajax({
+                    method: 'GET',
+                    url: "/api/homework_score/student/" + studentInfo.dataset.id
+                })
+                .done(result => {
+                    console.log("getHomeworkScore done");
+                    console.log(result);
+
+                    // create new table and iteration
+                    // std iteration    // result[0]: homework group // result[1]: homework // result[2]: homework score
+                    result[0].forEach(element => {
+                        // row part
+                        let row = document.createElement('div');
+                        row.className = "row";
+
+                        let col12 = document.createElement('div');
+                        col12.className = "col-12";
+
+                        // homework group title part
+                        let rowmb2 = document.createElement('div');
+                        rowmb2.className = "row mb-2";
+
+                        let colsm4 = document.createElement('div');
+                        colsm4.className = "col-sm-4";
+                        
+                        let homeworkGroupTitle = document.createElement('h4');
+                        homeworkGroupTitle.id = element._id;
+                        homeworkGroupTitle.innerText = element.title;
+
+                        // homework table
+                        let tableresp = document.createElement('div');
+                        tableresp.className = "table-responsive";
+                        
+                        let table = document.createElement('table');
+                        table.className = "table table-centered w-100 dt-responsive nowrap";
+                        table.id = "products-datatable";
+
+                        let thead = document.createElement('thead');
+                        thead.className ="thead-light";
+
+                        let tr = document.createElement('tr');
+                        
+                        // homework list
+                        result[1].forEach(homework => {
+                            if (homework.group_id == element._id) {
+                                let th = document.createElement('th');
+                                th.innerText = homework.title;
+
+                                tr.appendChild(th);   
+                            }
+                        });
+                        
+                        let tbody = document.createElement('tbody');
+
+                        let btr = document.createElement('tr');
+
+                        // input field
+                        result[1].forEach(homework => {
+                            if (homework.group_id == element._id) {
+                                let td = document.createElement('td');
+                                let input = document.createElement('input');
+                                input.name = "input_score_post";
+                                input.className = "form-control";
+                                input.min = "0";
+                                input.max = "2";
+                                input.type = "number";
+                                input.dataset.student_id = studentInfo.dataset.id;
+                                input.dataset.homework_id = homework._id;
+
+                                if(result[2]) {
+                                    result[2].forEach(homeworkScore => {
+                                        if(homeworkScore.student_id == studentInfo.dataset.id
+                                        && homeworkScore.homework_id == homework._id) {
+                                            input.value = homeworkScore.score;
+                                        }
+                                    });
+                                }
+
+                                input.placeholder = "0";
+
+                                td.appendChild(input);
+                                btr.appendChild(td);
+                            }
+                        });
+
+                        colsm4.appendChild(homeworkGroupTitle);
+                        rowmb2.appendChild(colsm4);
+                        col12.appendChild(rowmb2);
+                        row.appendChild(col12);
+
+                        thead.appendChild(tr);
+                        tbody.appendChild(btr);
+                        table.appendChild(thead);
+                        table.appendChild(tbody);
+                        tableresp.appendChild(table);
+                        col12.appendChild(tableresp);
+
+                        board.appendChild(row);
+                    });
+                })
+                .fail((xhr, status, error) => {
+                    console.log("실패: " + error);
+                })
+                */
+
+            });
+
+            $('#btn-hwscore-post').on('click', () => {
+                const inputs = document.getElementsByName('input_score_post');
+                // console.log(inputs);
+
+                let checkBlank = false;
+                for(let i = 0; i < inputs.length; ++i) {
+                    if(!inputs[i].value) {
+                        checkBlank = true;
+                        break;
+                    }
+                }
+
+                if(checkBlank) {
+                    callAlert("fail_blank");
+                    return;
+                }
+
+                inputs.forEach(input => {
+                    // console.log(input.dataset.homework_id);
+                    // console.log(input.dataset.student_id);
+                    // console.log(input.value);
+                    $.ajax({
+                        method: 'POST',
+                        url: "/api/homework_score/?homework_id=" + input.dataset.homework_id + "&student_id=" + input.dataset.student_id,
+                        data: { homework_id: input.dataset.homework_id, student_id: input.dataset.student_id, score: input.value }
+                    })
+                    .done((json) => {
+                        console.log(json);
+                        console.log("post done");
+                        callAlert("post");
+                    })
+                    .fail((xhr, status, error) => {
+                        console.log("실패: " + error);
+                    })
+                })
+            });
+
+        </script>
+
+    </body>
+</html>

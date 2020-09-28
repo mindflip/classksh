@@ -12,7 +12,7 @@
         <li class="side-nav-title side-nav-item">Navigation</li>
 
         <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
+            <a href="/" class="side-nav-link">
                 <i class="uil-home-alt"></i>
                 <span> Dashboards </span>
             </a>
@@ -34,6 +34,13 @@
             </a>
         </li>
 
+        <% if (user) { %>
+        <li class="side-nav-item side-nav-link">
+            <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm"> <%= user.username %> </button>
+            <button type="button" class="btn btn-success btn-rounded btn-sm float-right"> logged in </button>
+            <a href="/auth/logout"><button type="button" class="btn btn-danger btn-rounded btn-sm float-right"> log out </button></a>
+        </li>
+        <% } %>
 
     </ul>
 
