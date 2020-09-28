@@ -10,7 +10,7 @@ module.exports = () => {
         passwordField: 'password'
     }, async (username, password, done) => {
         try {
-            const exUser = await User.find({ username: username });
+            const exUser = await User.findOne({ username: username });
             console.log(exUser);
             if(exUser) {
                 const result = await bycrypt.compare(password, exUser.password);
