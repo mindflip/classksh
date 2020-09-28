@@ -10,6 +10,7 @@ const passport = require('passport');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const teacherRouter = require('./routes/teacher');
 
 const adminRouter = require('./routes/api/admin');
 const studentsRouter = require('./routes/api/students');
@@ -46,12 +47,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
+app.use('/teacher', teacherRouter);
+
 app.use('/api/users', usersRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/students', studentsRouter);
 app.use('/api/homework_groups', homeworkGroupsRouter);
 app.use('/api/homeworks', homeworksRouter);
-app.use('/api/homeworkScore', homeworkScoreRouter);
+app.use('/api/homework_score', homeworkScoreRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
