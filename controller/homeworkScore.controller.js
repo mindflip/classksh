@@ -69,14 +69,20 @@ exports.getHomeworkScoreByHomeworkGroupId = async (req, res, next) => {
         const homeworkGroup = await homeworkGroupModel.findById(req.params.homework_group_id);
         const homework = await homeworkModel.find({ group_id: homeworkGroup._id });
         //console.log(homework);
+        for(const element of homework) {
+            const homeworkScore = await homeworkScoreModel.find({ homework_id: element._id });
+            aryHomeworkScore = aryHomeworkScore.concat(homeworkScore);
+        }
+        /*
         homework.forEach( async (element) => {
             const homeworkScore = await homeworkScoreModel.find({ homework_id: element._id });
             // console.log(homeworkScore);
             aryHomeworkScore = aryHomeworkScore.concat(homeworkScore);
         });
+        */
         const student = await studentModel.find({});
 
-        console.log(aryHomeworkScore);
+        // console.log(aryHomeworkScore);
         result.push(homeworkGroup);
         result.push(homework);
         result.push(aryHomeworkScore);
