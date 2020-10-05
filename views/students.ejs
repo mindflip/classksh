@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('module/head'); %>
+    </head>
+    <body class="" data-layout="detached" data-layout-config='{"leftSidebarCondensed":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+        <%- include('module/topbar'); %>
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- Begin page -->
+            <div class="wrapper">
+
+                <%- include('module/leftsidebar'); %>
+                
+                
+                <div class="content-page">
+                    <div class="content">
+                
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Students</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->    
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>번호</th>
+                                                        <th>이름</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% students.forEach(student => { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= student.number %>
+                                                            </td>
+                                                            <td>
+                                                                <p class="m-0 d-inline-block align-middle font-16">
+                                                                    <a href="/students/<%= student._id%>" class="text-body"><%= student.name %></a>
+                                                                </p>
+                                                            </td>                                                        
+                                                        </tr>
+                
+                                                    <% }) %>                                                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('module/bundle'); %>
+
+    </body>
+</html>

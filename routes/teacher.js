@@ -5,7 +5,7 @@ const studentModel = require("../model/student.model");
 const homeworkGroupModel = require("../model/homeworkGroup.model");
 const homeworkModel = require("../model/homework.model");
 const homeworkScoreModel = require("../model/homeworkScore.model");
-
+const todayNoticeModel = require("../model/todayNotice.model");
 
 router.get('/', isLoggedIn, async (req, res, next) => {
     try {
@@ -13,11 +13,6 @@ router.get('/', isLoggedIn, async (req, res, next) => {
         const homeworkGroup = await homeworkGroupModel.find({});
         const homework = await homeworkModel.find({});
         const homeworkScore = await homeworkScoreModel.find({});
-
-
-
-
-
 
         res.render('teacher', {
             students: students,
@@ -30,5 +25,16 @@ router.get('/', isLoggedIn, async (req, res, next) => {
         next(err);
     }
 });
+
+router.post('/today', isLoggedIn, async (req, res, next) => {
+    try {
+        const todayNotice = await todayNoticeModel.create(req.body);
+
+        res.redirect('/');
+
+    } catch (err) {
+        next(err);
+    }
+})
 
 module.exports = router;

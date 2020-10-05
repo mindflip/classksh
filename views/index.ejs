@@ -30,21 +30,24 @@
                         <div class="row">
                             <div class="col-xl-5 col-lg-6">
 
+
                                 <div class="row">
+                                    <!--    
                                     <div class="col-lg-6">
                                         <div class="card widget-flat">
                                             <div class="card-body">
                                                 <h5 class="text-muted font-weight-normal mt-0" title="Number of Customers">최근 과제 총 점수</h5>
-                                                <h3 class="mt-3 mb-3">254</h3>
-                                            </div> <!-- end card-body-->
-                                        </div> <!-- end card-->
-                                    </div> <!-- end col-->
+                                                <h3 class="mt-3 mb-3"><%= recentHomeworkScore %></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    -->
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="card widget-flat">
                                             <div class="card-body">
-                                                <h5 class="text-muted font-weight-normal mt-0" title="Number of Orders">N주차 과제 총 점수</h5>
-                                                <h3 class="mt-3 mb-3">5,543</h3>
+                                                <h5 class="text-muted font-weight-normal mt-0" title="Number of Orders">최근 과제 그룹 총 점수</h5>
+                                                <h3 class="mt-3 mb-3"><%= recentHomeworkGroupScore %></h3>
                                             </div> <!-- end card-body-->
                                         </div> <!-- end card-->
                                     </div> <!-- end col-->
@@ -55,7 +58,7 @@
                                         <div class="card widget-flat">
                                             <div class="card-body">
                                                 <h5 class="text-muted font-weight-normal mt-0" title="Average Revenue">선생님 한 마디</h5>
-                                                <h3 class="mt-3 mb-3">오늘도 힘내요!</h3>
+                                                <h3 class="mt-3 mb-3"><%= today %></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +70,7 @@
                                     <div class="card-body">
                                         <h4 class="header-title">우리 반 과제 총 점수</h4>
                                         <img src="/images/main_total.png" alt="total_score" style="width:250px; height:250px; display: block; margin-left: auto; margin-right: auto;">
-                                        <div class="div-centered-ts">7,102</div>
+                                        <div class="div-centered-ts"><%= totalScore %></div>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
 
@@ -76,115 +79,40 @@
                         <!-- end row -->
 
                         <!-- start top row -->
+                        <% bestStudents.forEach(obj => { %>
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-3">2주차 과제왕</h4>
-
-                                        <div class="chart-content-bg">
-                                            <div class="row text-center">
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>2관왕</span>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>2관왕</span>
+                                            <h3 class="header-title mb-3"><%= obj.title %></h4>
+                                            <% if(obj.students === undefined || obj.students.length == 0) { %>
+                                                <h5>과제왕이 없는 한 주였어요.</h5>
+                                            <% } else { %> 
+                                                <div class="chart-content-bg">
+                                                    <div class="row text-center">
+                                                        <% obj.students.forEach(student => { %>
+                                                        <div class="col-md-3">
+                                                            <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
+                                                            <div class="div-centered-top">
+                                                                <span><%= student.name %></span>
+                                                            </div>
+                                                            <div class="div-centered-top-desc">
+                                                                <span><%= student.times %> 관왕</span>
+                                                            </div>   
+                                                        </div>
+                                                        <% }) %>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>2관왕</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>2관왕</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                            <% } %>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                             </div> <!-- end col-->
 
                         </div>
                         <!-- end row -->
+                        <% }) %>
 
-                        <!-- start top row -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mb-3">1주차 과제왕</h4>
-
-                                        <div class="chart-content-bg">
-                                            <div class="row text-center">
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>1관왕</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>1관왕</span>
-                                                    </div>                                                 
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>1관왕</span>
-                                                    </div>                                                
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="/images/top.png" alt="top" style="width:200px; height:200px;">
-                                                    <div class="div-centered-top">
-                                                        <span>이준석</span>
-                                                    </div>
-                                                    <div class="div-centered-top-desc">
-                                                        <span>1관왕</span>
-                                                    </div>                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div> <!-- end card-body-->
-                                </div> <!-- end card-->
-                            </div> <!-- end col-->
-
-                        </div>
-                        <!-- end row -->
                     </div>
                 </div>
             </div>

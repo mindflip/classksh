@@ -2,7 +2,7 @@
 <div class="left-side-menu left-side-menu-detached">
 
     <div class="leftbar-user">
-        <img src="/images/profile.png" alt="user-image" height="42" class="rounded-circle shadow-sm">
+        <!-- <img src="/images/profile.png" alt="user-image" height="42" class="rounded-circle shadow-sm"> -->
         <span class="leftbar-user-name">권수현 선생님</span>
     </div>
 
@@ -16,19 +16,23 @@
                 <i class="uil-home-alt"></i>
                 <span> Dashboards </span>
             </a>
-            <a href="/student" class="side-nav-link">
+            <a href="/students" class="side-nav-link">
                 <i class="uil-user"></i>
                 <span> Students </span>
             </a>
-            <a href="/homework" class="side-nav-link">
+            <!-- <a href="/homework" class="side-nav-link">
                 <i class="uil-book-open"></i>
                 <span> Homeworks </span>
-            </a>
+            </a> -->
         </li>
 
         <li class="side-nav-title side-nav-item">Admin</li>
         <li class="side-nav-item">
-            <a href="#" data-toggle="modal" data-target="#tc-login" class="side-nav-link">
+            <% if (user) { %>
+                <a href="/teacher" class="side-nav-link">
+            <% } else { %>
+                <a href="#" data-toggle="modal" data-target="#tc-login" class="side-nav-link">
+            <% } %>
                 <i class="uil-user"></i>
                 <span> Teacher </span>
             </a>
