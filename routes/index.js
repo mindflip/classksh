@@ -26,60 +26,58 @@ router.get('/', async (req, res, next) => {
     let student = await studentModel.find({});
     let groupBestStudents = await groupBestStudentModel.find({});
 
-    // get recentHomeworkScore
-    let recentHomeworkId = homework[homework.length - 1]._id;
-    let recentHomeworkScore = 0;
-    homeworkScore.forEach(score => {
-        if(recentHomeworkId == score.homework_id) {
-            recentHomeworkScore += Number(score.score);
-        }
-    });
-
     // get recentHomeworkGroupScore
     let recentHomeworkGroupScore = 0;
-    let recentHomeworkGroupId = homeworkGroup[homeworkGroup.length - 1]._id;
-    let recentHomeworksInRecentGroup = homework.filter(element => recentHomeworkGroupId == element.group_id );
-    recentHomeworksInRecentGroup.forEach(recentHomework => {
-        homeworkScore.forEach(singleHomeworkScore => {
-            if(recentHomework._id == singleHomeworkScore.homework_id) {
-                recentHomeworkGroupScore += Number(singleHomeworkScore.score);
-            }
+    console.log(homeworkGroup);
+    if(homeworkGroup.length != 0) {
+        let recentHomeworkGroupId = homeworkGroup[homeworkGroup.length - 1]._id;
+        let recentHomeworksInRecentGroup = homework.filter(element => recentHomeworkGroupId == element.group_id );
+        recentHomeworksInRecentGroup.forEach(recentHomework => {
+            homeworkScore.forEach(singleHomeworkScore => {
+                if(recentHomework._id == singleHomeworkScore.homework_id) {
+                    recentHomeworkGroupScore += Number(singleHomeworkScore.score);
+                }
+            });
         });
-    });
+    }
+    
 
     // get totalScore
     let totalScore = 0;
-    homeworkScore.forEach(score => {
-        totalScore += Number(score.score);
-    });
+    if(homeworkScore.length != 0) {
+        homeworkScore.forEach(score => {
+            totalScore += Number(score.score);
+        });
+    }
 
     // get bestStudents
     let bestStudents = [];
-    homeworkGroup.forEach(hwg => {
+    if(homeworkGroup.length != 0) {
+        homeworkGroup.forEach(hwg => {
         
-        let group = {
-            title: hwg.title,
-            students: []
-        };
-
-        groupBestStudents.forEach(gbs => {
-            if(hwg._id == gbs.group_id) {
-                let studentInfo = student.filter(obj => {
-                    return obj._id == gbs.student_id;
-                });
-                // console.log(studentInfo);
-                studentInfo.forEach(std => {
-                    group.students.push({
-                        name: std.name,
-                        times: gbs.times
-                    });        
-                });
-            }
-        });
-
-        bestStudents.push(group);
-    });
+            let group = {
+                title: hwg.title,
+                students: []
+            };
     
+            groupBestStudents.forEach(gbs => {
+                if(hwg._id == gbs.group_id) {
+                    let studentInfo = student.filter(obj => {
+                        return obj._id == gbs.student_id;
+                    });
+                    // console.log(studentInfo);
+                    studentInfo.forEach(std => {
+                        group.students.push({
+                            name: std.name,
+                            times: gbs.times
+                        });        
+                    });
+                }
+            });
+    
+            bestStudents.push(group);
+        });
+    }
 
     console.log(res.locals.user);
 
@@ -88,7 +86,6 @@ router.get('/', async (req, res, next) => {
         user: res.locals.user,
         today: res.locals.today? res.locals.today : "오늘도 힘내요!",
         
-        recentHomeworkScore: recentHomeworkScore,
         recentHomeworkGroupScore: recentHomeworkGroupScore,
         totalScore: totalScore,
         bestStudents: bestStudents.reverse(),
