@@ -16,6 +16,10 @@
                 <div class="content-page">
                     <div class="content">
 
+                        <div id="div-alert" class="div-alert">
+
+                        </div>
+
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -457,7 +461,7 @@
         <script>
             let callAlert = function (type) {
                 let divAlert = document.createElement('div');
-
+                
                 if(type == "patch") {
                     divAlert.className = "alert alert-primary";
                     divAlert.textContent = "수정되었습니다.";
@@ -470,11 +474,18 @@
                 } else if (type == "fail_blank") {
                     divAlert.className = "alert alert-danger";
                     divAlert.textContent = "데이터 전송 실패하였습니다. 빈 칸을 모두 채워주세요.";
+                } else if (type == "group_none_select") {
+                    divAlert.className = "alert alert-danger";
+                    divAlert.textContent = "그룹을 먼저 선택해주세요";
+                } else if (type == "homework_none_typed") {
+                    divAlert.className = "alert alert-danger";
+                    divAlert.textContent = "과제 제목을 입력하세요.";
                 }
                 
                 divAlert.role = "alert";
 
-                document.getElementById('loc-alert').appendChild(divAlert);
+                // document.getElementById('loc-alert').appendChild(divAlert);
+                document.getElementById('div-alert').appendChild(divAlert);
 
                 window.setTimeout(function() {
                     $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -761,6 +772,7 @@
                     console.log("delete done");
                     callAlert("delete");
                     callUpdatedHwgrp();
+                    callUpdatedHw();
                 })
                 .fail((xhr, status, error) => {
                     console.log("실패: " + error);
@@ -832,6 +844,17 @@
             };
 
             $('#btn-hw-post').on('click', () => {
+
+                if($('#sel-hwgrpid :selected').val() == '0') {
+                    callAlert("group_none_select");
+                    return;
+                }
+
+                if($('#post-hw-title').val() == "") {
+                    callAlert("homework_none_typed");
+                    return;
+                }
+
                 $.ajax({
                     method: 'POST',
                     url: "/api/homeworks/",
@@ -869,9 +892,10 @@
             });
  
             // homework score Tab
-            $(document).on("click", "#std-score-list", function() {
-                let homeworkGroupInfo = $(this)[0];
-                console.log(homeworkGroupInfo.innerText);
+            let targetGroupInScoreList;
+            let makeScoreListUI = () => {
+                let homeworkGroupInfo = targetGroupInScoreList;
+                // console.log(homeworkGroupInfo.innerText);
                 
                 let board = document.getElementById('std-hw-score-board');
                 board.innerHTML = '';
@@ -993,6 +1017,11 @@
                 .fail((xhr, status, error) => {
                     console.log("실패: " + error);
                 });
+            }
+
+            $(document).on("click", "#std-score-list", function() {
+                targetGroupInScoreList = $(this)[0];
+                makeScoreListUI();
             });
 
             $('#btn-hwscore-post').on('click', () => {
@@ -1015,7 +1044,7 @@
                 }
                 */
 
-                inputs.forEach(input => {
+                inputs.forEach((input, index) => {
                     // console.log(input.dataset.homework_id);
                     // console.log(input.dataset.student_id);
                     // console.log(input.value);
@@ -1025,9 +1054,14 @@
                         data: { homework_id: input.dataset.homework_id, student_id: input.dataset.student_id, score: input.value? input.value : 0 }
                     })
                     .done((json) => {
-                        console.log(json);
+                        //console.log(json);
                         console.log("post done");
                         callAlert("post");
+
+                        if(index == inputs.length - 1) {
+                            // console.log("this is last post");
+                            makeScoreListUI();
+                        }
                     })
                     .fail((xhr, status, error) => {
                         console.log("실패: " + error);
