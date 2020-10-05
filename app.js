@@ -11,12 +11,14 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const teacherRouter = require('./routes/teacher');
+const studentsRouter = require('./routes/students');
 
-const adminRouter = require('./routes/api/admin');
-const studentsRouter = require('./routes/api/students');
-const homeworkGroupsRouter = require('./routes/api/homeworkGroups');
-const homeworksRouter = require('./routes/api/homeworks');
-const homeworkScoreRouter = require('./routes/api/homeworkScore');
+const apiAdminRouter = require('./routes/api/admin');
+const apiStudentsRouter = require('./routes/api/students');
+const apiHomeworkGroupsRouter = require('./routes/api/homeworkGroups');
+const apiHomeworksRouter = require('./routes/api/homeworks');
+const apiHomeworkScoreRouter = require('./routes/api/homeworkScore');
+const apiGroupBestStudentRouter = require('./routes/api/groupBestStudent');
 const passportConfig = require('./passport');
 
 require('dotenv').config();
@@ -49,13 +51,15 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/teacher', teacherRouter);
+app.use('/students', studentsRouter);
 
 app.use('/api/users', usersRouter);
-app.use('/api/admin', adminRouter);
-app.use('/api/students', studentsRouter);
-app.use('/api/homework_groups', homeworkGroupsRouter);
-app.use('/api/homeworks', homeworksRouter);
-app.use('/api/homework_score', homeworkScoreRouter);
+app.use('/api/admin', apiAdminRouter);
+app.use('/api/students', apiStudentsRouter);
+app.use('/api/homework_groups', apiHomeworkGroupsRouter);
+app.use('/api/homeworks', apiHomeworksRouter);
+app.use('/api/homework_score', apiHomeworkScoreRouter);
+app.use('/api/group_best_student', apiGroupBestStudentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
