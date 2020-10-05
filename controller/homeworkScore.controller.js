@@ -7,8 +7,8 @@ exports.createHomeworkScore = async (req, res, next) => {
     try {
         // get doc using homework_id and student_id
 
-        console.log(req.query.homework_id);
-        console.log(req.query.student_id);
+        // console.log(req.query.homework_id);
+        // console.log(req.query.student_id);
         const deleteScore = await homeworkScoreModel.deleteMany({ homework_id: req.query.homework_id, student_id: req.query.student_id });
 
         const homeworkScore = await homeworkScoreModel.create(req.body);
