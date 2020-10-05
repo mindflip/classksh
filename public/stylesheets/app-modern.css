@@ -14332,3 +14332,12 @@ body[data-leftbar-theme="dark"] .side-nav .side-nav-forth-level li.active > a {
   color: #ffffff;
   font-weight: bold;
 }
+
+.div-alert {
+    position: absolute;
+    margin-top: 10px;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    /* display: none; */
+}
