@@ -14328,9 +14328,12 @@ body[data-leftbar-theme="dark"] .side-nav .side-nav-forth-level li.active > a {
   top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15px;
+  font-size: 18px;
   color: #ffffff;
   font-weight: bold;
+  border: 2px solid;
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px 5px black;
 }
 
 .div-alert {
