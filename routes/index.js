@@ -65,15 +65,20 @@ router.get('/', async (req, res, next) => {
                     let studentInfo = student.filter(obj => {
                         return obj._id == gbs.student_id;
                     });
+                    
                     // console.log(studentInfo);
+
                     studentInfo.forEach(std => {
                         group.students.push({
+                            number: std.number,
                             name: std.name,
                             times: gbs.times
                         });        
                     });
                 }
             });
+
+            group.students.sort((a, b) => parseFloat(a.number) - parseFloat(b.number));
     
             bestStudents.push(group);
         });
