@@ -6,6 +6,7 @@ const homeworkGroupModel = require("../model/homeworkGroup.model");
 const homeworkModel = require("../model/homework.model");
 const homeworkScoreModel = require("../model/homeworkScore.model");
 const todayNoticeModel = require("../model/todayNotice.model");
+const visitorCountModel = require("../model/visitorCount.model");
 
 router.get('/', isLoggedIn, async (req, res, next) => {
     try {
@@ -13,12 +14,14 @@ router.get('/', isLoggedIn, async (req, res, next) => {
         const homeworkGroup = await homeworkGroupModel.find({});
         const homework = await homeworkModel.find({});
         const homeworkScore = await homeworkScoreModel.find({});
+        const visitorCount = await visitorCountModel.findOne({ name: "visitors" });
 
         res.render('teacher', {
             students: students,
             homeworkGroup: homeworkGroup,
             homework: homework,
-            homeworkScore: homeworkScore
+            homeworkScore: homeworkScore,
+            visitorCount: visitorCount
         });
     } catch (err) {
         console.error(err)
