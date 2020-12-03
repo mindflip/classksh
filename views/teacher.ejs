@@ -214,33 +214,54 @@
                                                         <div class="border p-3 mt-4 mt-lg-0 rounded">
                                                             <h4 class="header-title mb-3">과제 조회</h4>
             
-                                                            <div class="table-responsive">
-                                                                <table class="table table-centered mb-0">
-                                                                    <tbody id="hw-tbody">
-                                                                        <% homework.forEach(element => { %>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="m-0 d-inline-block align-middle">
-                                                                                        <a class="text-body">
-                                                                                            <%= element.title %> - 
-                                                                                            <% homeworkGroup.forEach(hwg => { %>
-                                                                                                <% if(element.group_id == hwg._id) { %>
-                                                                                                    <%= hwg.title %>
-                                                                                                <% } %>
-                                                                                            <% }) %>
-                                                                                        </a>
-                                                                                        
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td class="text-sm-right">
-                                                                                    <a id="btn-hw-delete" href="#" class="btn" data-id=<%= element._id %>><i class="mdi mdi-trash-can-outline"></i></a>
-                                                                                </td>
-                                                                            </tr>                                                                            
-                                                                        <% }); %>
-                                                                    </tbody>
-                                                                </table>
+
+                                                            <!-- Accordion style start -->
+                                                            <div class="accordion custom-accordion" id="custom-accordion-one">
+
+                                                                <% homeworkGroup.forEach(hwg => {%>
+                                                                <div class="card mb-0">
+                                                                    <div class="card-header" id="heading<%= hwg._id %>">
+                                                                        <h5 class="m-0">
+                                                                            <a class="custom-accordion-title d-block py-1"
+                                                                                data-toggle="collapse" href="#collapse<%= hwg._id %>"
+                                                                                aria-expanded="false" aria-controls="collapse<%= hwg._id %>">
+                                                                                <%= hwg.title %> <i
+                                                                                    class="mdi mdi-chevron-down accordion-arrow"></i>
+                                                                            </a>
+                                                                        </h5>
+                                                                    </div>
+                                                                        
+                                                                    <div id="collapse<%= hwg._id %>" class="collapse"
+                                                                        aria-labelledby="heading<%= hwg._id %>"
+                                                                        data-parent="#custom-accordion-one">
+                                                                        <div class="card-body">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table table-centered mb-0">
+                                                                                    <tbody>
+                                                                                        <% homework.forEach(hw => { %>
+                                                                                            <% if(hwg._id == hw.group_id) { %>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <p class="m-0 d-inline-block align-middle">
+                                                                                                            <a href="#" class="text-body"><%= hw.title %></a>
+                                                                                                        </p>
+                                                                                                    </td>
+                                                                                                    <td class="text-sm-right">
+                                                                                                        <a id="btn-hw-delete" href="#" class="btn" data-id=<%= hw._id %>><i class="mdi mdi-trash-can-outline"></i></a>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            <% } %>
+                                                                                        <% }) %>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <% }) %>
                                                             </div>
-                                                            <!-- end table-responsive -->
+                                                            <!-- Accordion style end -->
                                                         </div> <!-- end .border-->
             
                                                     </div> <!-- end col -->     
@@ -783,7 +804,97 @@
 
             // homework Tab
 
-            let changeHwList = (hw, originHwgrp) => {
+            let changeHwList = (hws, originHwgrp) => {
+                /** **/
+                let accordion = document.getElementById('custom-accordion-one');
+                accordion.innerHTML = '';
+
+                originHwgrp.forEach(hwg => {
+                    let card = document.createElement('div');
+                    card.className = "card mb-0";
+
+                    accordion.appendChild(card);
+
+                    // card header
+                    let cardHeader = document.createElement('div');
+                    cardHeader.className = "card-header";
+                    cardHeader.id = "heading" + hwg._id;
+                    let hwgTitleH5 = document.createElement('h5');
+                    hwgTitleH5.className = "m-0";
+                    let hwgTitleClick = document.createElement('a');
+                    hwgTitleClick.className = "custom-accordion-title d-block py-1";
+                    hwgTitleClick.setAttribute("data-toggle", "collapse");
+                    hwgTitleClick.href = "#collapse" + hwg._id;
+                    hwgTitleClick.setAttribute("aria-expanded", "false");
+                    hwgTitleClick.setAttribute("aria-controls", "collapse" + hwg._id);
+                    hwgTitleClick.innerText = hwg.title;
+                    let arrowIcon = document.createElement('i');
+                    arrowIcon.className = "mdi mdi-chevron-down accordion-arrow";
+
+                    // connection header
+                    card.appendChild(cardHeader);
+                    cardHeader.appendChild(hwgTitleH5);
+                    hwgTitleH5.appendChild(hwgTitleClick);
+                    hwgTitleClick.appendChild(arrowIcon);
+
+                    // card content(homework)
+                    let cardContent = document.createElement('div');
+                    cardContent.id = "collapse" + hwg._id;
+                    cardContent.className = "collapse";
+                    cardContent.setAttribute("aria-labelledby", "heading" + hwg._id);
+                    cardContent.setAttribute("data-parent", "#custom-accordion-one");
+                    let cardBody = document.createElement('div');
+                    cardBody.className = "card-body";
+                    let tbRsp = document.createElement('div');
+                    tbRsp.className = "table-responsive";
+                    let table = document.createElement('table');
+                    table.className = "table table-centered mb-0";
+                    let tbody = document.createElement('tbody');
+
+                    // connection content card
+                    card.appendChild(cardContent);
+                    cardContent.appendChild(cardBody);
+                    cardBody.appendChild(tbRsp);
+                    tbRsp.appendChild(table);
+                    table.appendChild(tbody);
+
+
+                    hws.forEach(hw => {
+                        if(hwg._id == hw.group_id) {
+                            let tr = document.createElement('tr');
+                            let td1 = document.createElement('td');
+                            let p = document.createElement('p');
+                            p.className = "m-0 d-inline-block align-middle";
+                            let hwTitle = document.createElement('a');
+                            hwTitle.href = "#";
+                            hwTitle.className = "text-body";
+                            hwTitle.innerText = hw.title;
+
+                            let td2 = document.createElement('td');
+                            td2.className = "text-sm-right";
+                            let btnDelete = document.createElement('a');
+                            btnDelete.id = "btn-hw-delete";
+                            btnDelete.setAttribute("data-id", hw._id);
+                            btnDelete.href = "#";
+                            btnDelete.className = "btn";
+                            let icon = document.createElement('i');
+                            icon.className = "mdi mdi-trash-can-outline";
+
+                            // connection content
+                            tbody.appendChild(tr);
+                            tr.appendChild(td1);
+                            td1.appendChild(p);
+                            p.appendChild(hwTitle);
+
+                            tr.appendChild(td2);
+                            td2.appendChild(btnDelete);
+                            btnDelete.appendChild(icon);
+                        }
+                    });
+                })
+                /**/
+
+                /**
                 let tbody = document.getElementById('hw-tbody');
                 tbody.innerHTML = '';
 
@@ -822,6 +933,7 @@
                     row.appendChild(col2);
                     tbody.appendChild(row);
                 });
+                */                
             }
             
             let callUpdatedHw = () => {
